@@ -1,0 +1,45 @@
+{%extends "base.html"%}
+{% block nav_finished %}active{% endblock %}
+{%block content%}
+<div class="content container">
+  <h1>Завершенных задач: {{ todos.count() }}</h1>
+  {% for todo in todos %}
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-3 mb-md-2">
+      <div class="card text-bg-success">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+              <a
+                href="{{ url_for('todo_detail', id=todo[0].id) }}"
+                title="todo detail"
+                style="color: #252525; text-decoration: none"
+              >
+                <h4>{{ todo.title }}</h4>
+              </a>
+            </div>
+            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+              Завершено: {{ moment(todo.deadline).fromNow() }}
+            </div>
+            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+              <a
+                class="btn btn-dark"
+                href="{{ url_for('delete_todo', id=todo.id) }}"
+                title="Delete todo"
+              >
+                <i
+                  class="bi bi-x"
+                  style="font-size: 1.5rem"
+                  href="{{ url_for('delete_todo', id=todo.id) }}"
+                >
+                </i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{%endblock%}
