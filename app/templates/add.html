@@ -9,12 +9,14 @@
     <h1 class="text-center">Новая задача</h1>
     <div class="col-md-6">
       <form method="post">
-        {{ form.hidden_tag() }} {{ wtf.form_errors(form, hiddens=True) }} {{
-        wtf.form_field(form.title) }} {{ wtf.form_field(form.desc) }} {{
-        wtf.form_field(form.deadline) }}
+        {{ form.hidden_tag() }}
+        {{ wtf.form_errors(form, hiddens=True) }}
+        {{ wtf.form_field(form.title) }}
+        {{ wtf.form_field(form.desc) }}
+        {{ wtf.form_field(form.deadline) }}
         <br />
         <center>
-          <input type="submit" value="Сохранить" class="btn btn-primary" />
+          <input type="submit" value="Создать" class="btn btn-primary" />
         </center>
       </form>
       <script>

@@ -3,15 +3,15 @@
 {%block content%}
 <div class="content container">
   <div class="row align-items-center justify-content-center">
-    <div class="col-8 col-sm-8 col-md-8 col-lg-9 col-xl-9 mb-3 mb-md-2">
+    <div class="col-8 col-sm-8 col-md-8 col-lg-7 col-xl-8 mb-3 mb-md-2">
       <h1>{{ todo.title }}</h1>
       {% if todo.desc != '' %}
       <p>{{ todo.desc }}</p>
       {% endif %} {% if todo.deadline != None and todo.complited != True %}
-      <p>Срок: {{ moment(todo.deadline).format('LLLL') }}</p>
+      <p>Дедлайн: {{ moment(todo.deadline).format('LLLL') }}</p>
       {% endif %}
     </div>
-    <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3 mb-3 mb-md-2">
+    <div class="col-4 col-sm-4 col-md-4 col-lg-5 col-xl-4 mb-3 mb-md-2">
       {% if todo.completed == False %}
       <a
         class="btn btn-secondary"
@@ -38,7 +38,7 @@
         </i>
       </a>
       {% endif %} {% if todo.completed == True %}
-      <p>Завершено: {{ moment(todo.completed_time).format('LLLL') }}</p>
+      <p>Дата завершения: {{ moment(todo.completed_time).format('LLLL') }}</p>
       <a
         class="btn btn-dark"
         href="{{ url_for('todo_uncompleted', id=todo.id) }}"
