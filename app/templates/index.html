@@ -6,11 +6,11 @@
   <div class="row">
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-md-3">
       {% if todo[1] < 0 %}
-      <div class="card text-bg-danger">
+      <div class="card border-danger text-bg-ligth">
         {% elif todo[1] < 86400 %}
-        <div class="card text-bg-warning">
+        <div class="card border-warning text-bg-ligth">
           {% else %}
-          <div class="card text-bg-info">
+          <div class="card border-info text-bg-ligth">
             {% endif%}
             <div class="card-body">
               <div class="row">
@@ -52,7 +52,7 @@
                     </i>
                   </a>
                   <a
-                    class="btn btn-dark"
+                    class="btn btn-danger"
                     href="{{ url_for('delete_todo', id=todo[0].id) }}"
                     title="Delete todo"
                   >
@@ -70,7 +70,7 @@
         </div>
       </div>
       {% else %}
-      <div class="card text-bg-info">
+      <div class="card border-info text-bg-ligth">
         <div class="card-body">
           <div class="row">
             <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
@@ -110,7 +110,7 @@
                 </i>
               </a>
               <a
-                class="btn btn-dark"
+                class="btn btn-danger"
                 href="{{ url_for('delete_todo', id=todo[0].id) }}"
                 title="Delete todo"
               >

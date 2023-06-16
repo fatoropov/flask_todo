@@ -37,17 +37,17 @@ def add():
         else:
             utc_time = None
 
-        task = Todo(
+        todo = Todo(
             title=form.title.data,
             desc=form.desc.data,
             deadline=utc_time,
             utc_offset=utc_diff,
         )
-        db.session.add(task)
+        db.session.add(todo)
         db.session.commit()
 
         return redirect(url_for("todo_detail",
-                                id=task.id))
+                                id=todo.id))
     return render_template("add.html",
                            title="Add todo",
                            form=form)
@@ -58,6 +58,7 @@ def edit_todo(id):
     form = AddForm()
     todo = Todo.query.get(id)
     if form.validate_on_submit():
+        print(form.title.data)
         utc_diff = form.time_offset.data
         if form.deadline.data is not None:
             utc_time = form.deadline.data + dt.timedelta(minutes=int(utc_diff))
@@ -131,22 +132,3 @@ def delete_todo(id):
     db.session.delete(todo)
     db.session.commit()
     return redirect(url_for("index"))
-
-
-"""
-
-@bp.route("/unfinished/<id>", methods=["GET", "POST"])
-@login_required
-def task_unfinished(id):
-    task = Task.query.get(id)
-    if task is None or task.author != current_user:
-        flash("There is no such task.")
-        return redirect(url_for("main.index"))
-    task.mark_unfinished()
-    db.session.add(task)
-    db.session.commit()
-    flash("Task marked as unfinished")
-    return redirect(url_for("main.task_detail", id=task.id))
-
-
-"""
